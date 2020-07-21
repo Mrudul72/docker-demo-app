@@ -1,0 +1,47 @@
+version: '3.3'
+services:
+
+ wordpress:
+    depends_on:
+    - mariadb
+    image: wordpress
+    restart: always
+    environment:
+     - WORDPRESS_DB_HOST=mariadb:3306
+     - WORDPRESS_DB_PASSWORD=password
+    ports:
+     - "80:80"
+    volumes:
+     - ./html:/var/www/html
+    networks:
+    - nw
+
+ mariadb:
+    image: mariadb
+    restart: always
+    ports:
+    - "3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=wordpress
+    volumes:
+     - ./database:/var/lib/mysql
+    networks:
+    - nw
+
+ phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+    - mariadb
+    restart: always
+    environment:
+      - PMA_HOST=mariadb
+    ports:
+    - "8080:80"
+    networks:
+    - nw
+
+networks:
+ nw:
+  driver: bridge
+
