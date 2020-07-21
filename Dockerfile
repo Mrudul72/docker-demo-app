@@ -2,7 +2,7 @@
 FROM nginx
 
 #Maintainer Information
-MAINTAINER Ashkar Ali ashkar.ali@zynux.in
+MAINTAINER yourname <email id>
 
 #Install required packages
 RUN apt update
