@@ -1,7 +1,80 @@
 #How to install docker
 https://docs.docker.com/engine/install/ubuntu/
 
+#To view docker version
+docker -v
+docker --version
+docker version
+
+#To show active running container
+docker ps
+
+#To show all container (running/exited)
+docker ps -a
+
+#Docker hub url
+https://hub.docker.com/
+#search any image for demo
+
+#To search docker images
+docker search nginx
+
+#To pull image demo
+docker pull nginx
+
+#To list images
+docker images 
+#or
+docker image ls
+
+#To basic run a container
+docker run nginx
+#open a new terminal then check running container (docker ps)
+#exit the container press (Ctrl+c)
+
+#-d background daemon
+docker run -d nginx
+docker ps 
+docker ps -a
+
+#To stop running container
+docker stop compassionate_galois #<container id or name>
+
+#To remove exited container 
+docker ps
+docker ps -a
+docker rm compassionate_galois   #<container id or name>
+
+#expose port and container name
+docker run -d --name my-app -p 80:80 nginx
+#check url with localip or public ip
+docker ps
+docker stop my-app 
+docker rm my-app 
+
+#TO remove image
+docker images
+docker rmi nginx:latest 
+docker images
+
+#demo 
+docker run -d --name my-app-1 -p 81:80 zynux/color:v2
+docker run -d --name my-app-2 -p 82:80 zynux/color:v1
+#check url with localip or public ip (example: http://ip:81, http://ip:82
+
+mkdir my-app-3
+vim index.html          #https://github.com/zynux/docker-demo-app
+vim Dockerfile          #https://github.com/zynux/docker-demo-app
+docker build -t myapp3 .
+docker images
+docker run -d --name my-app-3 -p 83:80 myapp3
+docker ps
+docker stop $(docker ps -q -a)
+docker rm  $(docker ps -q -a)
+
+
 #How to install docker-compose
 https://docs.docker.com/compose/install/
+
 
 
